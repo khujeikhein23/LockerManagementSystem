@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UC Banilad Locker System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LockerManagementSystem.styles.css" asp-append-version="true" />
+    <style>
+        :root {
+            --uc-primary: #1a237e;    /* UC Dark Blue */
+            --uc-secondary: #283593;  /* UC Medium Blue */
+            --uc-accent: #5c6bc0;     /* UC Light Blue */
+            --uc-gold: #ffd700;       /* UC Gold */
+            --uc-light: #e8eaf6;      /* UC Light Background */
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--uc-light) 0%, #ffffff 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .uc-header {
+            background: linear-gradient(135deg, var(--uc-primary), var(--uc-secondary));
+            border-bottom: 4px solid var(--uc-gold);
+        }
+
+        .uc-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .uc-brand-small {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            margin: 0 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: white !important;
+            padding: 10px 20px !important;
+        }
+
+        .nav-link:hover {
+            background-color: var(--uc-gold) !important;
+            color: var(--uc-primary) !important;
+            transform: translateY(-2px);
+        }
+
+        .uc-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(26, 35, 126, 0.1);
+            border-left: 5px solid var(--uc-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .uc-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .uc-card-header {
+            background: linear-gradient(135deg, var(--uc-primary), var(--uc-secondary));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .btn-uc {
+            background: linear-gradient(135deg, var(--uc-secondary), var(--uc-primary));
+            border: none;
+            border-radius: 25px;
+            padding: 12px 35px;
+            font-weight: 700;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-uc:hover {
+            background: linear-gradient(135deg, var(--uc-primary), var(--uc-secondary));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 35, 126, 0.4);
+            color: white;
+        }
+
+        .btn-uc-gold {
+            background: linear-gradient(135deg, var(--uc-gold), #ffc400);
+            color: var(--uc-primary);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 35px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-uc-gold:hover {
+            background: linear-gradient(135deg, #ffc400, var(--uc-gold));
+            transform: translateY(-2px);
+            color: var(--uc-primary);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--uc-accent);
+            box-shadow: 0 0 0 0.2rem rgba(92, 107, 192, 0.25);
+        }
+
+        .input-group-text {
+            background: var(--uc-primary);
+            color: white;
+            border: 2px solid var(--uc-primary);
+        }
+
+        .badge-uc {
+            background: var(--uc-primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .table-uc th {
+            background: linear-gradient(135deg, var(--uc-primary), var(--uc-secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .alert-uc {
+            border-radius: 15px;
+            border: none;
+            font-weight: 600;
+            border-left: 5px solid var(--uc-gold);
+        }
+
+        .uc-footer {
+            background: var(--uc-primary);
+            color: white;
+            margin-top: 3rem;
+            border-top: 4px solid var(--uc-gold);
+        }
+
+        .uc-stat-card {
+            background: linear-gradient(135deg, var(--uc-primary), var(--uc-secondary));
+            color: white;
+            border-radius: 15px;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .uc-stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .uc-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.1;
+            font-size: 8rem;
+            color: var(--uc-primary);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark uc-header">
+            <div class="container">
+                <a class="navbar-brand uc-brand" asp-controller="Locker" asp-action="RequestForm">
+                    <i class="fas fa-university me-2"></i>UC BANILAD
+                    <div class="uc-brand-small">Locker Management System</div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Locker" asp-action="RequestForm">
+                                <i class="fas fa-plus-circle me-2"></i>New Locker Request
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Locker" asp-action="Admin">
+                                <i class="fas fa-cog me-2"></i>Admin Panel
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="uc-watermark">
+        <i class="fas fa-university"></i>
+    </div>
+
+    <div class="container py-5">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-uc alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        
+        @RenderBody()
+    </div>
+
+    <footer class="uc-footer mt-5 py-4">
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-university me-2"></i>University of Cebu Banilad &copy; 2025. All rights reserved.
+            </p>
+            <small>Locker Management System v1.0</small>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <script>
+        // Auto-dismiss alerts after 5 seconds
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.alert').alert('close');
+            }, 5000);
+        });
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

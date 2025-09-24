@@ -1,0 +1,37 @@
+﻿@model LockerManagementSystem.Models.LockerRequest
+
+@{
+    ViewData["Title"] = "Request Confirmation";
+}
+
+<div class="container mt-4">
+    <div class="alert alert-success text-center">
+        <h2>Request Submitted Successfully!</h2>
+        <p>Your locker request has been received and is pending approval.</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Request Details</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Name:</strong> @Model.Name</p>
+                    <p><strong>ID Number:</strong> @Model.IdNumber</p>
+                    <p><strong>Locker Number:</strong> @Model.LockerNumber</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Semester:</strong> @Model.Semester</p>
+                    <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
+                    <p><strong>Submission Date:</strong> @Model.SubmissionDate.ToString("MM/dd/yyyy")</p>
+                </div>
+            </div>
+            <p><strong>Status:</strong> <span class="badge bg-warning">@Model.Status</span></p>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Return to Home</a>
+    </div>
+</div>
